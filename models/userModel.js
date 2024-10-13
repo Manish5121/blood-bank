@@ -1,37 +1,37 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const userSchema = new mongoose.Schema(
   {
     role: {
       type: String,
       required: [true, "role is required"],
-      enum: ["admin", "organisation", "donar", "hospital"],
+      enum: ["admin", "organization", "donar", "hospital"],
     },
     name: {
       type: String,
       required: function () {
         if (this.role === "user" || this.role === "admin") {
-          return true;
+          return true
         }
-        return false;
+        return false
       },
     },
     organisationName: {
       type: String,
       required: function () {
         if (this.role === "organisation") {
-          return true;
+          return true
         }
-        return false;
+        return false
       },
     },
     hospitalName: {
       type: String,
       required: function () {
         if (this.role === "hospital") {
-          return true;
+          return true
         }
-        return false;
+        return false
       },
     },
     email: {
@@ -56,6 +56,6 @@ const userSchema = new mongoose.Schema(
     },
   },
   { timestamps: true }
-);
+)
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model("users", userSchema)

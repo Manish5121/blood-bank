@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../../components/shared/Layout/Layout";
-import moment from "moment";
-import API from "../../services/API";
+import React, { useEffect, useState } from "react"
+import Layout from "../../components/shared/Layout/Layout"
+import moment from "moment"
+import API from "../../services/API"
 
 const HospitalList = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
   //find donar records
   const getDonars = async () => {
     try {
-      const { data } = await API.get("/admin/hospital-list");
-      console.log(data);
+      const { data } = await API.get("/admin/hospital-list")
+      console.log(data)
       if (data?.success) {
-        setData(data?.hospitalData);
+        setData(data?.hospitalData)
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   useEffect(() => {
-    getDonars();
-  }, []);
+    getDonars()
+  }, [getDonars])
 
   //DELETE FUNCTION
   const handelDelete = async (id) => {
@@ -28,15 +28,15 @@ const HospitalList = () => {
       let answer = window.prompt(
         "Are You SUre Want To Delete This Hospital",
         "Sure"
-      );
-      if (!answer) return;
-      const { data } = await API.delete(`/admin/delete-donar/${id}`);
-      alert(data?.message);
-      window.location.reload();
+      )
+      if (!answer) return
+      const { data } = await API.delete(`/admin/delete-donar/${id}`)
+      alert(data?.message)
+      window.location.reload()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <Layout>
@@ -70,7 +70,7 @@ const HospitalList = () => {
         </tbody>
       </table>
     </Layout>
-  );
-};
+  )
+}
 
-export default HospitalList;
+export default HospitalList
